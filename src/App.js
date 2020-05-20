@@ -1,25 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import Layout from './layout/layout';
+import Home from './components/home/home';
+import Todos from './components/todos/todos';
+import Login from './components/auth/login/login';
+import Sigunp from './components/auth/signup/signup'
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout/>
+      <Switch>
+        <Route exact path='/todos-locos' component={Home} />
+        <Route path='/todos-locos/todos' component={Todos} />
+        <Route path='/todos-locos/login' component={Login} />
+        <Route path='/todos-locos/signup' component={Sigunp} />
+        <Redirect to = '/todos-locos'/>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
