@@ -46,7 +46,7 @@ const SignupScheme = Yup.object().shape({
         .required('You need to confirm your password')
 });
 
-const Signup = ({ signUp }) => {
+const Signup = ({ signUp, loading, error }) => {
     return(
         <SignupContainer>
         <Formik 
@@ -58,9 +58,9 @@ const Signup = ({ signUp }) => {
                 confirmPassword: ''
             }} 
             validationSchema={SignupScheme} 
-            onSubmit={(values, {setSubmitting}) => {
-                console.log(values)
-                signUp(values);
+            onSubmit={async (values, {setSubmitting}) => {
+                console.log(values);
+                await signUp(values);
                 setSubmitting(false);
             }}>
             {({isSubmitting, isValid}) => (
@@ -87,7 +87,8 @@ const Signup = ({ signUp }) => {
                             <Field type='password' name='confirmPassword' placeholder='Confirm password...'/>
                             <ErrorMessage name='confirmPassword'/>
                         </div>
-                        <button disabled={!isValid} type='submit'>Submit</button>
+                        <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Signing up...' :'Submit'}</button>
+                        {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
                     </Form>
                 </FormWrapper>
             )}
@@ -96,8 +97,9 @@ const Signup = ({ signUp }) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-    
+const mapStateToProps = ({ auth }) => ({
+    loading: auth.loading,
+    error: auth.error
 })
 
 const mapDispatchToProps = {
