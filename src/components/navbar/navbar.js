@@ -38,26 +38,44 @@ const NavItems = styled.ul`
     }
 `;
 
-const Navbar = () => {
+const Navbar = ({ loggedIn }) => {
+    let links;
+    if(loggedIn.uid){
+        links = (
+            <NavItems>
+                <li>
+                    <NavLink to="/todos-locos">Home</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/todos-locos/todos">Todos</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/todos-locos/logout'>Logout</NavLink>
+                </li>
+            </NavItems>
+        )
+    }else{
+        links = (
+            <NavItems>
+                <li>
+                    <NavLink to="/todos-locos">Home</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/todos-locos/todos">Todos</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/todos-locos/login'>Login</NavLink>
+                </li>
+                <li>
+                    <NavLink to='/todos-locos/signup'>Signup</NavLink>
+                </li>
+            </NavItems>
+        )
+    }
     return(
         <NavWrapper>
             <Logo/>
-            <Nav>
-                <NavItems>
-                    <li>
-                        <NavLink to="/todos-locos">Home</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/todos-locos/todos">Todos</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/todos-locos/login'>Login</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to='/todos-locos/signup'>Signup</NavLink>
-                    </li>
-                </NavItems>
-            </Nav>
+            <Nav>{links}</Nav>
         </NavWrapper>
     )
 };

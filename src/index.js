@@ -13,14 +13,14 @@ import store from './store'
 
 const rrfConfig = {
   userProfile: 'users',
-  useFirestoreForProfile: true 
+  useFirestoreForProfile: true,
 }
 
 const rrfProps = {
   firebase,
   config: rrfConfig,
   dispatch: store.dispatch,
-  createFirestoreInstance 
+  createFirestoreInstance, 
 };
 
 ReactDOM.render(
@@ -33,6 +33,8 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

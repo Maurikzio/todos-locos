@@ -6,21 +6,39 @@ import Todos from './components/todos/todos';
 import Login from './components/auth/login/login';
 import Sigunp from './components/auth/signup/signup'
 
+import { connect } from 'react-redux';
 
+function App({ loggedIn }) {
+  console.log(loggedIn);
+  let routes;
+  if(loggedIn){
+    routes = (
+        <Switch>
+          <Route exact path='/todos-locos' component={Home} />
+          <Route path='/todos-locos/todos' component={Todos} />
+          <Redirect to = '/todos-locos'/>
+        </Switch>
+    )
+  }else{
+    routes = (
+        <Switch>
+          <Route exact path='/todos-locos' component={Home} />
+          <Route path='/todos-locos/login' component={Login} />
+          <Route path='/todos-locos/signup' component={Sigunp} />
+          <Redirect to = '/todos-locos'/>
+        </Switch>
+    )
+  }
 
-function App() {
   return (
     <BrowserRouter>
-      <Layout/>
-      <Switch>
-        <Route exact path='/todos-locos' component={Home} />
-        <Route path='/todos-locos/todos' component={Todos} />
-        <Route path='/todos-locos/login' component={Login} />
-        <Route path='/todos-locos/signup' component={Sigunp} />
-        <Redirect to = '/todos-locos'/>
-      </Switch>
+      <Layout>{routes}</Layout>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+const mapStateToProps = ({ firebase}) => ({
+  loggedIn: firebase.auth.uid ? true : null
+})
+
+export default connect(mapStateToProps)(App);
