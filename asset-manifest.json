@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/todos-locos/static/css/main.c75cc891.chunk.css",
-    "main.js": "/todos-locos/static/js/main.82b15ffa.chunk.js",
-    "main.js.map": "/todos-locos/static/js/main.82b15ffa.chunk.js.map",
+    "main.js": "/todos-locos/static/js/main.6a6cdf03.chunk.js",
+    "main.js.map": "/todos-locos/static/js/main.6a6cdf03.chunk.js.map",
     "runtime-main.js": "/todos-locos/static/js/runtime-main.8d467245.js",
     "runtime-main.js.map": "/todos-locos/static/js/runtime-main.8d467245.js.map",
     "static/js/2.beebad74.chunk.js": "/todos-locos/static/js/2.beebad74.chunk.js",
     "static/js/2.beebad74.chunk.js.map": "/todos-locos/static/js/2.beebad74.chunk.js.map",
     "index.html": "/todos-locos/index.html",
-    "precache-manifest.0fbc3f591fac896ff6485185ce1aa7df.js": "/todos-locos/precache-manifest.0fbc3f591fac896ff6485185ce1aa7df.js",
+    "precache-manifest.61733188b4fccec2a11200848d1ceb0e.js": "/todos-locos/precache-manifest.61733188b4fccec2a11200848d1ceb0e.js",
     "service-worker.js": "/todos-locos/service-worker.js",
     "static/css/main.c75cc891.chunk.css.map": "/todos-locos/static/css/main.c75cc891.chunk.css.map",
     "static/js/2.beebad74.chunk.js.LICENSE.txt": "/todos-locos/static/js/2.beebad74.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.8d467245.js",
     "static/js/2.beebad74.chunk.js",
     "static/css/main.c75cc891.chunk.css",
-    "static/js/main.82b15ffa.chunk.js"
+    "static/js/main.6a6cdf03.chunk.js"
   ]
 }
