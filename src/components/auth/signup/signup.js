@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
@@ -46,7 +46,15 @@ const SignupScheme = Yup.object().shape({
         .required('You need to confirm your password')
 });
 
-const Signup = ({ signUp, loading, error }) => {
+const Signup = ({ signUp, loading, error, cleanUp }) => {
+    useEffect(() => {
+        //when mounts
+
+        //when unmounts
+        // return() => {
+            cleanUp();
+        // }
+    },[cleanUp])
     return(
         <SignupContainer>
         <Formik 
@@ -103,7 +111,8 @@ const mapStateToProps = ({ auth }) => ({
 })
 
 const mapDispatchToProps = {
-    signUp: actions.signUp
+    signUp: actions.signUp,
+    cleanUp: actions.clean
 } 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup);

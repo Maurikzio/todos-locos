@@ -16,8 +16,8 @@ function App({ loggedIn }) {
   if(loggedIn){
     routes = (
         <Switch>
-          <Route exact path='/todos-locos' component={Home} />
-          <Route path='/todos-locos/todos' component={Todos} />
+          {/* <Route exact path='/todos-locos' component={Home} /> */}
+          <Route exact path='/todos-locos/' component={Todos} />
           <Route path='/todos-locos/logout' component={Logout} />
           <Redirect to = '/todos-locos'/>
         </Switch>
@@ -25,10 +25,9 @@ function App({ loggedIn }) {
   }else{
     routes = (
         <Switch>
-          <Route exact path='/todos-locos' component={Home} />
           <Route path='/todos-locos/login' component={Login} />
           <Route path='/todos-locos/signup' component={Sigunp} />
-          <Redirect to = '/todos-locos'/>
+          <Redirect to = '/todos-locos/login'/>
         </Switch>
     )
   }

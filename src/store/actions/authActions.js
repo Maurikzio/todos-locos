@@ -39,3 +39,24 @@ export const signOut = () => {
         }
     }
 }
+
+//login action creator
+export const signIn = (data) => {
+    return async (dispatch, getState, { getFirebase}) => {
+        const firebase = getFirebase();
+        dispatch({type: actions.AUTH_START})
+        try{
+            await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+            dispatch({ type: actions.AUTH_SUCCESS})  
+        }catch(err){
+            console.log(err.message);
+            dispatch({ type: actions.AUTH_FAIL, payload: err.message })
+        }
+        dispatch({type: actions.AUTH_END})
+    }
+};
+
+//clean up error messages 
+export const clean = () => {
+    return ({ type: actions.CLEAN_UP })
+};

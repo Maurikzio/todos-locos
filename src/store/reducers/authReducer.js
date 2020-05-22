@@ -27,6 +27,13 @@ const authReducer = (state =  initialState, action) => {
                 ...state, 
                 error: action.payload
             }
+        case actions.CLEAN_UP:{
+            return {
+                ...state, 
+                error: null,
+                loading: false
+            }
+        }
         default:
             return state;
     }

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import { connect } from 'react-redux'
+
+import * as actions from '../../../store/actions'
 
 const LoginContainer = styled.div`
     /* background-color: red; */
@@ -29,12 +32,31 @@ const LoginScheme = Yup.object().shape({
         .required('The email is required'),
     password: Yup.string()
         .required('The password is required')
+        .min(8, 'Too short password')
 });
 
-const Login = () => {
+const Login = ({loading, error, login, cleanUp}) => {
+    useEffect(() => {
+        //when mounts
+        
+        //when unmounts
+        return() => {
+            cleanUp();
+        }
+    },[cleanUp])
     return(
         <LoginContainer>
-        <Formik initialValues={{email: '', password: ''}} validationSchema={LoginScheme} onSubmit={(values, {setSubmitting}) => console.log(values)}>
+        <Formik 
+            initialValues={{email: '', password: ''}} 
+            validationSchema={LoginScheme} 
+            // onSubmit={async (values, {setSubmitting}) =>{ //this is causing an error: Can't perform a React state update on an unmounted component.This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+            //     await login(values);
+            //     setSubmitting(false)
+            // }}>
+            onSubmit={ (values, {setSubmitting}) =>{
+                login(values);
+                setSubmitting(false)
+            }}>
             {({isSubmitting, isValid}) => (
                 <FormWrapper>
                     <p>Login</p>    
@@ -44,10 +66,11 @@ const Login = () => {
                             <ErrorMessage name='email'/>
                         </div>
                         <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
-                            <Field type='passowrd' name='password' placeholder='Your password...'/>
+                            <Field type='password' name='password' placeholder='Your password...'/>
                             <ErrorMessage name='password'/>
                         </div>
-                        <button disabled={!isValid} type='submit'>Submit</button>
+                        <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Loggin in...' :'Login'}</button>
+                        {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
                     </Form>
                 </FormWrapper>
             )}
@@ -56,4 +79,14 @@ const Login = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = ({auth}) => ({
+    loading: auth.loading,
+    error: auth.error
+})
+
+const mapDispatchToProps = {
+    login: actions.signIn,
+    cleanUp: actions.clean
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

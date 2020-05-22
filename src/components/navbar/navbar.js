@@ -41,13 +41,13 @@ const NavItems = styled.ul`
 const Navbar = ({ loggedIn }) => {
     let links;
     if(loggedIn.uid){
-        links = (
+        links = ( 
             <NavItems>
-                <li>
+                {/* <li>
                     <NavLink to="/todos-locos">Home</NavLink>
-                </li>
+                </li> */}
                 <li>
-                    <NavLink to="/todos-locos/todos">Todos</NavLink>
+                    <NavLink to="/todos-locos">Todos</NavLink>
                 </li>
                 <li>
                     <NavLink to='/todos-locos/logout'>Logout</NavLink>
@@ -57,12 +57,12 @@ const Navbar = ({ loggedIn }) => {
     }else{
         links = (
             <NavItems>
-                <li>
+                {/* <li>
                     <NavLink to="/todos-locos">Home</NavLink>
-                </li>
-                <li>
-                    <NavLink to="/todos-locos/todos">Todos</NavLink>
-                </li>
+                </li> */}
+                {/* <li>
+                    <NavLink to="/todos-locos">Todos</NavLink>
+                </li> */}
                 <li>
                     <NavLink to='/todos-locos/login'>Login</NavLink>
                 </li>
