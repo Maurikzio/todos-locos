@@ -8,25 +8,36 @@ import Todos from './components/todos/todos';
 import Login from './components/auth/login/login';
 import Sigunp from './components/auth/signup/signup'
 import Logout from './components/auth/logout/logout';
+import VerifyEmail from './components/auth/verifyEmail/verifyEmail';
 
 
-function App({ loggedIn }) {
-  console.log(loggedIn);
+function App({ loggedIn, emailVerified }) {
+  console.log(`email verified: ${emailVerified}`);
+  console.log(`logged in: ${loggedIn}`);
+
   let routes;
-  if(loggedIn){
+
+  if(loggedIn && !emailVerified){
+    routes = (
+      <Switch>
+        <Route exact path='/todos-locos/verify-email' component={VerifyEmail}/>
+        <Route exact path='/todos-locos/logout' component={Logout} />
+        <Redirect to = '/todos-locos/verify-email'/>
+      </Switch>
+    )
+  }else if(loggedIn && emailVerified){
     routes = (
         <Switch>
-          {/* <Route exact path='/todos-locos' component={Home} /> */}
           <Route exact path='/todos-locos/' component={Todos} />
-          <Route path='/todos-locos/logout' component={Logout} />
+          <Route exact path='/todos-locos/logout' component={Logout} />
           <Redirect to = '/todos-locos'/>
         </Switch>
     )
   }else{
     routes = (
         <Switch>
-          <Route path='/todos-locos/login' component={Login} />
-          <Route path='/todos-locos/signup' component={Sigunp} />
+          <Route exact path='/todos-locos/login' component={Login} />
+          <Route exact path='/todos-locos/signup' component={Sigunp} />
           <Redirect to = '/todos-locos/login'/>
         </Switch>
     )
@@ -40,7 +51,8 @@ function App({ loggedIn }) {
 }
 
 const mapStateToProps = ({ firebase}) => ({
-  loggedIn: firebase.auth.uid ? true : null
+  loggedIn: firebase.auth.uid,
+  emailVerified: firebase.auth.emailVerified
 })
 
 export default connect(mapStateToProps)(App);
