@@ -3,6 +3,10 @@ import * as actions from '../actions/actionTypes'
 const initialState = { 
     error: null, 
     loading: false,
+    verifyEmail: {
+        error: null, 
+        loading: false
+    }
 };
 
 const authReducer = (state =  initialState, action) => {
@@ -31,9 +35,40 @@ const authReducer = (state =  initialState, action) => {
             return {
                 ...state, 
                 error: null,
-                loading: false
+                loading: false,
+                verifyEmail: {
+                    ...state.verifyEmail,
+                    loading: false,
+                    error: null
+                }
             }
         }
+        case actions.VERIFY_START:
+            return{
+                ...state,
+                verifyEmail: {
+                    ...state.verifyEmail, 
+                    loading: true
+                }
+            }
+        case actions.VERIFY_SUCCESS: 
+            return {
+                ...state,
+                verifyEmail: {
+                    ...state.verifyEmail,
+                    loading: false,
+                    error: false
+                }
+            }
+        case actions.VERIFY_FAIL: 
+            return {
+                ...state,
+                verifyEmail: {
+                    ...state.verifyEmail,
+                    loading: false,
+                    error: action.payload
+                }
+            }
         default:
             return state;
     }

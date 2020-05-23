@@ -64,3 +64,19 @@ export const signIn = (data) => {
 export const clean = () => {
     return ({ type: actions.CLEAN_UP })
 };
+
+//verify email action
+export const verifyEmail = () => {
+    return async (dispatch, getState,  { getFirebase }) => {
+        const firebase = getFirebase();
+        dispatch({ type: actions.VERIFY_START })
+        try {
+            const user = firebase.auth().currentUser;
+            await user.sendEmailVerification();
+            dispatch({ type: actions.VERIFY_SUCCESS })
+        }catch(err){
+            console.log(err.message);
+            dispatch({ type: actions.VERIFY_FAIL, payload: err.message })
+        }
+    }
+}

@@ -66,9 +66,15 @@ const Signup = ({ signUp, loading, error, cleanUp }) => {
                 confirmPassword: ''
             }} 
             validationSchema={SignupScheme} 
-            onSubmit={async (values, {setSubmitting}) => {
+            // onSubmit={async (values, {setSubmitting}) => {
+            //     console.log(values);
+            //     await signUp(values);
+            //     setSubmitting(false);
+            // }}>
+            //error: Can't perform a React state update on an unmounted component. 
+            onSubmit={(values, {setSubmitting}) => {
                 console.log(values);
-                await signUp(values);
+                signUp(values);
                 setSubmitting(false);
             }}>
             {({isSubmitting, isValid}) => (
