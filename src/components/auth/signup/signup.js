@@ -57,56 +57,56 @@ const Signup = ({ signUp, loading, error, cleanUp }) => {
     },[cleanUp])
     return(
         <SignupContainer>
-        <Formik 
-            initialValues={{
-                firstName: '',
-                lastName: '',
-                email: '', 
-                password: '',
-                confirmPassword: ''
-            }} 
-            validationSchema={SignupScheme} 
-            // onSubmit={async (values, {setSubmitting}) => {
-            //     console.log(values);
-            //     await signUp(values);
-            //     setSubmitting(false);
-            // }}>
-            //error: Can't perform a React state update on an unmounted component. 
-            onSubmit={(values, {setSubmitting}) => {
-                console.log(values);
-                signUp(values);
-                setSubmitting(false);
-            }}>
-            {({isSubmitting, isValid}) => (
-                <FormWrapper>
-                    <p>Sign up</p>
-                    <Form>
-                        <div style={{display: 'flex', flexDirection: 'column', height: '40px', width: '100%'}}>
-                            <Field type='text' name='firstName' placeholder='Your first name..'/>
-                            <ErrorMessage name='firstName'/>
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
-                            <Field type='text' name='lastName' placeholder='Your last name..'/>
-                            <ErrorMessage name='lastName'/>
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
-                            <Field type='email' name='email' placeholder='Your email..'/>
-                            <ErrorMessage name='email'/>
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
-                            <Field type='password' name='password' placeholder='Your password...'/>
-                            <ErrorMessage name='password'/>
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
-                            <Field type='password' name='confirmPassword' placeholder='Confirm password...'/>
-                            <ErrorMessage name='confirmPassword'/>
-                        </div>
-                        <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Signing up...' :'Submit'}</button>
-                        {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
-                    </Form>
-                </FormWrapper>
-            )}
-        </Formik>
+            <Formik 
+                initialValues={{
+                    firstName: '',
+                    lastName: '',
+                    email: '', 
+                    password: '',
+                    confirmPassword: ''
+                }} 
+                validationSchema={SignupScheme} 
+                // onSubmit={async (values, {setSubmitting}) => {
+                //     console.log(values);
+                //     await signUp(values);
+                //     setSubmitting(false);
+                // }}>
+                //error: Can't perform a React state update on an unmounted component. 
+                onSubmit={(values, {setSubmitting}) => {
+                    // console.log(values);
+                    signUp(values);
+                    setSubmitting(false);
+                }}>
+                {({isSubmitting, isValid}) => (
+                    <FormWrapper>
+                        <p>Sign up</p>
+                        <Form>
+                            <div style={{display: 'flex', flexDirection: 'column', height: '40px', width: '100%'}}>
+                                <Field type='text' name='firstName' placeholder='Your first name..'/>
+                                <ErrorMessage name='firstName'/>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
+                                <Field type='text' name='lastName' placeholder='Your last name..'/>
+                                <ErrorMessage name='lastName'/>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
+                                <Field type='email' name='email' placeholder='Your email..'/>
+                                <ErrorMessage name='email'/>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
+                                <Field type='password' name='password' placeholder='Your password...'/>
+                                <ErrorMessage name='password'/>
+                            </div>
+                            <div style={{display: 'flex', flexDirection: 'column', height: '40px'}}>
+                                <Field type='password' name='confirmPassword' placeholder='Confirm password...'/>
+                                <ErrorMessage name='confirmPassword'/>
+                            </div>
+                            <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Signing up...' :'Submit'}</button>
+                            {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
+                        </Form>
+                    </FormWrapper>
+                )}
+            </Formik>
         </SignupContainer>
     )
 }

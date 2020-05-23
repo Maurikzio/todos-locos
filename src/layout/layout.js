@@ -8,6 +8,7 @@ import Loader from '../components/loader/loader';
 const MainWrapper = styled.div`
     width: 100%;
     margin-top: 60px;
+    height: 100%;
 `
 
 const LoaderContainer = styled.div`

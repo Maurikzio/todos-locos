@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../../store/actions/authActions'
+import * as actions from '../../../store/actions'
 
 const VerifyEmail = ({ error, loading, sendVerification, cleanUp }) => {
-    console.log(error);
+    // console.log(error);
     useEffect(() => {
         //when component mounts
 

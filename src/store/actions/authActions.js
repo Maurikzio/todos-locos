@@ -26,7 +26,7 @@ export const signUp = data => {
             dispatch({ type: actions.AUTH_SUCCESS})    
         } catch(err){
             dispatch({ type: actions.AUTH_FAIL, payload: err.message })
-            console.log('Somwthing wrong happened: ', err.message);
+            // console.log('Somwthing wrong happened: ', err.message);
         }
         dispatch({type: actions.AUTH_END})
     }
@@ -77,6 +77,20 @@ export const verifyEmail = () => {
         }catch(err){
             console.log(err.message);
             dispatch({ type: actions.VERIFY_FAIL, payload: err.message })
+        }
+    }
+}
+
+//send recovery password
+export const recoverPassword = (data) => { 
+    return async (dispatch, getState,  { getFirebase }) => {
+        const firebase = getFirebase();
+        dispatch({ type: actions.RECOVERY_START})
+        try {
+            await firebase.auth().sendPasswordResetEmail(data.email);
+            dispatch({ type: actions.RECOVERY_SUCCESS})
+        }catch(err){
+            dispatch({ type: actions.RECOVERY_FAIL, payload: err.message })
         }
     }
 }

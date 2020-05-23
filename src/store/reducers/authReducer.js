@@ -6,10 +6,14 @@ const initialState = {
     verifyEmail: {
         error: null, 
         loading: false
-    }
+    },
+    recoverPassword: {
+        error: null, 
+        loading: false
+    },
 };
 
-const authReducer = (state =  initialState, action) => {
+const authReducer = (state = initialState, action) => {
     switch(action.type){
         case actions.AUTH_START:
             return {
@@ -40,6 +44,11 @@ const authReducer = (state =  initialState, action) => {
                     ...state.verifyEmail,
                     loading: false,
                     error: null
+                },
+                recoverPassword: {
+                    ...state.recoverPassword,
+                    loading: false, 
+                    error: null
                 }
             }
         }
@@ -66,6 +75,32 @@ const authReducer = (state =  initialState, action) => {
                 verifyEmail: {
                     ...state.verifyEmail,
                     loading: false,
+                    error: action.payload
+                }
+            }
+        case actions.RECOVERY_START: 
+            return {
+                ...state,
+                recoverPassword: {
+                    ...state.recoverPassword, 
+                    loading: true
+                }
+            }
+        case actions.RECOVERY_SUCCESS: 
+            return {
+                ...state,
+                recoverPassword: {
+                    ...state.recoverPassword, 
+                    loading: false, 
+                    error: false
+                }
+            }
+        case actions.RECOVERY_FAIL: 
+            return {
+                ...state,
+                recoverPassword: {
+                    ...state.recoverPassword, 
+                    loading: false, 
                     error: action.payload
                 }
             }

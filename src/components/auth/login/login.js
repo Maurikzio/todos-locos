@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'
 
 import * as actions from '../../../store/actions'
+import { NavLink } from 'react-router-dom';
 
 const LoginContainer = styled.div`
     /* background-color: red; */
@@ -24,6 +25,18 @@ const FormWrapper = styled.div`
     justify-content: center;
     margin: 0 auto;
     width: 500px;
+`;
+
+const Recover = styled.div`
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    & a {
+        align-self: center;
+        text-decoration: none;
+        margin-left: 3px;
+    }
 `;
 
 const LoginScheme = Yup.object().shape({
@@ -69,7 +82,13 @@ const Login = ({loading, error, login, cleanUp}) => {
                             <Field type='password' name='password' placeholder='Your password...'/>
                             <ErrorMessage name='password'/>
                         </div>
-                        <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Loggin in...' :'Login'}</button>
+                        <div style={{display: 'flex'}}>
+                            <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Loggin in...' :'Login'}</button>
+                            <Recover>
+                                <NavLink to='/todos-locos/recover-password'>Recover password</NavLink>
+                            </Recover>
+                        </div>
+                        
                         {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
                     </Form>
                 </FormWrapper>

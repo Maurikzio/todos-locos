@@ -9,11 +9,12 @@ import Login from './components/auth/login/login';
 import Sigunp from './components/auth/signup/signup'
 import Logout from './components/auth/logout/logout';
 import VerifyEmail from './components/auth/verifyEmail/verifyEmail';
+import RecoverPassword from './components/auth/recoverPassword/recoverPassword';
 
 
 function App({ loggedIn, emailVerified }) {
-  console.log(`email verified: ${emailVerified}`);
-  console.log(`logged in: ${loggedIn}`);
+  // console.log(`email verified: ${emailVerified}`);
+  // console.log(`logged in: ${loggedIn}`);
 
   let routes;
 
@@ -38,6 +39,7 @@ function App({ loggedIn, emailVerified }) {
         <Switch>
           <Route exact path='/todos-locos/login' component={Login} />
           <Route exact path='/todos-locos/signup' component={Sigunp} />
+          <Route exact path='/todos-locos/recover-password' component={RecoverPassword}/>
           <Redirect to = '/todos-locos/login'/>
         </Switch>
     )
