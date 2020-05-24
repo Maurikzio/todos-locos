@@ -11,6 +11,10 @@ const initialState = {
         error: null, 
         loading: false
     },
+    profileEdit: {
+        error: null, 
+        loading: false
+    },
 };
 
 const authReducer = (state = initialState, action) => {
@@ -47,6 +51,11 @@ const authReducer = (state = initialState, action) => {
                 },
                 recoverPassword: {
                     ...state.recoverPassword,
+                    loading: false, 
+                    error: null
+                },
+                profileEdit: {
+                    ...state.profileEdit,
                     loading: false, 
                     error: null
                 }
@@ -101,6 +110,33 @@ const authReducer = (state = initialState, action) => {
                 recoverPassword: {
                     ...state.recoverPassword, 
                     loading: false, 
+                    error: action.payload
+                }
+            }
+        case actions.PROFILE_EDIT_START:
+            return {
+                ...state,
+                profileEdit: {
+                    ...state.profileEdit, 
+                    loading: true,
+                    error: null
+                }
+            }
+        case actions.PROFILE_EDIT_SUCCESS:
+            return {
+                ...state,
+                profileEdit: {
+                    ...state.profileEdit, 
+                    loading: false,
+                    error: false
+                }
+            }
+         case actions.PROFILE_EDIT_FAIL:
+            return {
+                ...state,
+                profileEdit: {
+                    ...state.profileEdit, 
+                    loading: false,
                     error: action.payload
                 }
             }

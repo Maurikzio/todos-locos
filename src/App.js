@@ -10,6 +10,7 @@ import Sigunp from './components/auth/signup/signup'
 import Logout from './components/auth/logout/logout';
 import VerifyEmail from './components/auth/verifyEmail/verifyEmail';
 import RecoverPassword from './components/auth/recoverPassword/recoverPassword';
+import Profile from './components/auth/profile/profile';
 
 
 function App({ loggedIn, emailVerified }) {
@@ -31,6 +32,7 @@ function App({ loggedIn, emailVerified }) {
         <Switch>
           <Route exact path='/todos-locos/' component={Todos} />
           <Route exact path='/todos-locos/logout' component={Logout} />
+          <Route exact path='/todos-locos/profile' component={Profile} />
           <Redirect to = '/todos-locos'/>
         </Switch>
     )

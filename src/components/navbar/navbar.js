@@ -50,6 +50,9 @@ const Navbar = ({ loggedIn }) => {
                     <NavLink to="/todos-locos">Todos</NavLink>
                 </li>
                 <li>
+                    <NavLink to='/todos-locos/profile'>Profile</NavLink>
+                </li>
+                <li>
                     <NavLink to='/todos-locos/logout'>Logout</NavLink>
                 </li>
             </NavItems>
