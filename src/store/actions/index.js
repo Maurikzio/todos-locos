@@ -5,5 +5,6 @@ export {
     clean, 
     verifyEmail, 
     recoverPassword, 
-    editProfile 
+    editProfile,
+    deleteUser
 } from './authActions'

@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import { connect } from 'react-redux';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
-
 import * as actions from '../../../store/actions'
+import Modal from '../../modal/modal';
 
 const SignupContainer = styled.div`
     /* background-color: red; */
@@ -46,13 +46,15 @@ const ProfileScheme = Yup.object().shape({
 });
 // console.log(ProfileScheme);
 
-const Profile = ({ firebase, loading, error,  editProfile, cleanUp}) => {
+const Profile = ({ firebase, loading, error,  editProfile, cleanUp, loadingDeleteUser, errorDeleteUser, deleteUser}) => {
 
     useEffect(() => {
         return () => {
             cleanUp();
         };
     }, [cleanUp])
+
+    const [modalOpened, setModalOpened] = useState(false);
 
     if(!firebase.profile.isLoaded) return null;
     return (
@@ -109,9 +111,19 @@ const Profile = ({ firebase, loading, error,  editProfile, cleanUp}) => {
                             : <p>{error}</p>
                         }
                         </Form>
+                        <p onClick={() => setModalOpened(true)}>Delete my account</p>
                     </FormWrapper>
                 )}
             </Formik>
+            <Modal opened={modalOpened} close={() => setModalOpened(false)}>
+                <h1>Delete account</h1>
+                <h3>Do you really want to delete your account?</h3>
+                <div style={{display: 'flex', width: '100%', justifyContent: 'space-evenly'}}>
+                    <button disabled={loadingDeleteUser} onClick={deleteUser}>{loadingDeleteUser ? 'Deleting...' :'YES'}</button>
+                    <button onClick={() => setModalOpened(false)}>Cancel</button>
+                </div>
+                {errorDeleteUser && <p style={{color: 'red', fontWeight: '800'}}>{errorDeleteUser}</p>}
+            </Modal>
         </SignupContainer>
     )
 }
@@ -119,12 +131,16 @@ const Profile = ({ firebase, loading, error,  editProfile, cleanUp}) => {
 const mapStateToProps = ({ firebase, auth}) => ({
     firebase,
     loading: auth.profileEdit.loading,
-    error: auth.profileEdit.error
+    error: auth.profileEdit.error,
+    loadingDeleteUser: auth.deleteUser.loading,
+    errorDeleteUser: auth.deleteUser.error
+
 })
 
 const mapDispatchToProps = {
     editProfile: actions.editProfile,
-    cleanUp: actions.clean
+    cleanUp: actions.clean,
+    deleteUser: actions.deleteUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
