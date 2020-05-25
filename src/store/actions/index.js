@@ -6,5 +6,9 @@ export {
     verifyEmail, 
     recoverPassword, 
     editProfile,
-    deleteUser
+    deleteUser,
 } from './authActions'
+
+export { 
+    addTodo
+} from './todoActions'
