@@ -9,6 +9,7 @@ const MainWrapper = styled.div`
     width: 100%;
     margin-top: 60px;
     height: 100%;
+    background-color: rgb(248, 248, 250);
 `
 
 const LoaderContainer = styled.div`

@@ -56,7 +56,11 @@ const Profile = ({ firebase, loading, error,  editProfile, cleanUp, loadingDelet
 
     const [modalOpened, setModalOpened] = useState(false);
 
+    //not getting the firstname and lastname because were not loaded at the time the 
+    //component was rendered
     if(!firebase.profile.isLoaded) return null;
+    
+    //and when the 'profile' isLoaded = true we will rerender again
     return (
         <SignupContainer>
             <Formik 
