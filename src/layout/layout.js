@@ -25,10 +25,10 @@ const Layout = ({ children, loggedIn, authIsLoaded }) => {
     // console.log(`is loaded: ${authIsLoaded}`);
     if(!authIsLoaded) return <LoaderContainer><Loader/></LoaderContainer>
     return (
-        <React.Fragment>
+        <div style={{height: '100%'}}>
             <Navbar loggedIn={loggedIn}/>
             <MainWrapper>{children}</MainWrapper>
-        </React.Fragment>
+        </div>
     )
 };
 

@@ -10,5 +10,6 @@ export {
 } from './authActions'
 
 export { 
-    addTodo
+    addTodo,
+    deleteTodo
 } from './todoActions'

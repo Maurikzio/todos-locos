@@ -35,21 +35,16 @@ const Todos = () => {
         { collection: 'todos', doc: todoId } // or `todos/${props.todoId}`
       ])
     const myTodos = useSelector(({ firestore: { data } }) => data.todos && data.todos[todoId].todos)
-    const ting = useSelector(({firestore: { status }}) => status.requesting[`todos/${todoId}`])
-    const ted = useSelector(({firestore: { status }}) => status.requested[`todos/${todoId}`])
+    // const requesting = useSelector(({firestore: { status }}) => status.requesting[`todos/${todoId}`])
+    const requested = useSelector(({firestore: { status }}) => status.requested[`todos/${todoId}`])
     // useFirestoreConnect(() => [{collection: 'todos', doc: userId}])
     // const myTodos = useSelector( ({ firestore: {data} }) =>  data.todos &&  data.todos[userId].todos)
-
-    // console.log(requesting)
-    // console.log(myTodos);
-    // console.log(ting);
-    // console.log(ted);
 
     let content;
     if(!myTodos){
         content = <Loader/>
-    }else if(!myTodos && ted){
-        content = <p>You have no todos</p>
+    }else if(!myTodos && requested || myTodos.length === 0){
+        content = <p>You have no todos!</p>
     }else{
         content = myTodos.map( todo => <Todo key={todo.id} todo={todo}/>)
     }

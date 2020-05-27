@@ -35,3 +35,22 @@ export const addTodo = data => {
         }
     }
 }
+
+//delete ToDo
+export const deleteTodo = (id) => {
+    return async (dispatch, getState, {getFirebase, getFirestore}) => {
+        const firestore = getFirestore();
+        const userId = getState().firebase.auth.uid;
+        dispatch({ type: actions.DELETE_TODO_START})
+        try{
+            const todosRef = await firestore.collection('todos').doc(userId).get();
+            const newTodos = todosRef.data().todos.filter(todo => todo.id !== id)
+            await firestore.collection('todos').doc(userId).update({
+                todos: newTodos
+            })
+            dispatch({ type: actions.DELETE_TODO_SUCCESS})
+        }catch(err){
+            dispatch({ type: actions.DELETE_TODO_FAIL, payload: err.message})
+        }
+    }
+}

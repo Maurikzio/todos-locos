@@ -13,6 +13,7 @@ const NavWrapper = styled.div`
     background-color: orange; 
     display: flex;
     padding: 0 20px;
+    z-index: 100;
 `
 
 const Nav = styled.nav`
