@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "58a9ce3a98139ca2cad498c12f27945a",
+    "revision": "d02578f28ccb44129a015643c2cb79b2",
     "url": "/todos-locos/index.html"
   },
   {
-    "revision": "94c8c449fed6d6a2b0c6",
+    "revision": "fdd9bd83a9a652cf5269",
     "url": "/todos-locos/static/css/main.572c7186.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/todos-locos/static/js/2.6797dd4b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "94c8c449fed6d6a2b0c6",
-    "url": "/todos-locos/static/js/main.d2154d92.chunk.js"
+    "revision": "fdd9bd83a9a652cf5269",
+    "url": "/todos-locos/static/js/main.180bb308.chunk.js"
   },
   {
     "revision": "917314cfd8ba5a679c9e",
