@@ -35,7 +35,7 @@ const AddTodo = ({loading, error, addTodo}) => {
                             setSubmitting(false)
                             resetForm();
                         }}>
-                        {({isSubmitting, isValid}) => (
+                        {({isSubmitting, isValid, resetForm}) => (
                             <Form>
                                 <div style={{display: 'flex', flexDirection: 'column', height: '40px', color: 'red'}}>
                                     <Field type='text' name='todo' placeholder='Type your todo'/>
@@ -43,7 +43,9 @@ const AddTodo = ({loading, error, addTodo}) => {
                                 </div>
                                 <div style={{display: 'flex', width: '100%', justifyContent: 'space-evenly'}}>
                                     <button disabled={!isValid || isSubmitting} type='submit'>{loading ? 'Adding...' :'ADD'}</button>
-                                    <button type='button' onClick={() => setIsOpened(false)}>Cancel</button>
+                                    <button type='button' onClick={() => {setIsOpened(false); resetForm()}}>
+                                        Cancel
+                                    </button>
                                 </div>
                                 {error && <p style={{ backgroundColor: 'red', color: 'white'}}>{error}</p>}
                             </Form>
