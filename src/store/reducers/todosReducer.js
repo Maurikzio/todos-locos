@@ -6,6 +6,10 @@ const initialState = {
     deleteTodo: {
         error: null, 
         loading: false
+    },
+    editTodo: {
+        erro: null, 
+        loading: false
     }
 }
 
@@ -50,6 +54,32 @@ const todosReducer = (state = initialState, action) => {
                 ...state, 
                 deleteTodo: {
                     ...state.deleteTodo,
+                    loading: false,
+                    error: action.payload
+                }
+            }
+        case actions.EDIT_TODO_START:
+            return {
+                ...state, 
+                editTodo: {
+                    ...state.editTodo,
+                    loading: true
+                }
+            }
+        case actions.EDIT_TODO_SUCCESS:
+            return {
+                ...state, 
+                editTodo: {
+                    ...state.editTodo,
+                    loading: false,
+                    error: false
+                }
+            }
+        case actions.EDIT_TODO_FAIL:
+            return {
+                ...state, 
+                editTodo: {
+                    ...state.editTodo,
                     loading: false,
                     error: action.payload
                 }

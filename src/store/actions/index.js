@@ -11,5 +11,6 @@ export {
 
 export { 
     addTodo,
-    deleteTodo
+    deleteTodo,
+    editTodo
 } from './todoActions'
