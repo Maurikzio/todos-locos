@@ -30,7 +30,7 @@ const Controls = styled.div`
 `;
 
 const TodoContent = styled.div`
-    height: 80px;
+    height: 160px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,17 +61,22 @@ const Todo = ({todo, modifyTodo}) => {
 
     const loading = useSelector(state => state.todos.editTodo.loading)
 
+    const itsMe = () => {
+        console.log(todo.todo)
+    }
+    
     return(
-        <Wrapper>
+        // <Wrapper onMouseLeave={() => setIsEditing(false)}>
+        <Wrapper> 
             <TodoContent>
                 {   
-                    isEditing ? loading ? <EditingLoader/> : <EditTodo toEdit={setEditedTodo} todo={todo}/> : <p>{todo.todo}</p>
+                    (isEditing) ? (loading ? <EditingLoader/> : <EditTodo toEdit={setEditedTodo} todo={todo}/>) : <p>{todo.todo}</p>
                 }
             </TodoContent>    
             <Controls>
                 {
                     isEditing 
-                    ? <><i className="fas fa-check" enabled={true} style={editStyles} onClick={ async () => { await modifyTodo(todo.id, editedTodo); setIsEditing(false)}}/> <i className="fas fa-times" style={deleteStyles} onClick={() => setIsEditing(false)}/></>
+                    ? <><i className="fas fa-check" style={editStyles} onClick={ async () => { await modifyTodo(todo.id, editedTodo); setIsEditing(false)}}/> <i className="fas fa-times" style={deleteStyles} onClick={() => setIsEditing(false)}/></>
                     : <><i className="far fa-edit" style={editStyles} onClick={()=>setIsEditing(true)}/> <i className="far fa-trash-alt" style={deleteStyles} onClick={() => setIsDeleting(true)}/></>
                 }
                 <DeleteTodo 

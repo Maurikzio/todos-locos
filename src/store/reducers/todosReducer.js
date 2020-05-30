@@ -8,7 +8,7 @@ const initialState = {
         loading: false
     },
     editTodo: {
-        erro: null, 
+        error: null, 
         loading: false
     }
 }

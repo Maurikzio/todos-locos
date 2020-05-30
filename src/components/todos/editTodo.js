@@ -14,13 +14,14 @@ const Input = styled.input`
 
 `;
 
-const EditTodo = ({todo, toEdit}) => {
+const EditTodo = ({todo, toEdit }) => {
     const [ editTodo, setEditTodo] = useState(todo.todo)
 
     const handleEditTodo = (e) => {
         setEditTodo(e.target.value);
-        toEdit(e.target.value);
+        toEdit(e.target.value);   
     }
+    
     return(
         <Input
             type='text'

@@ -29,7 +29,8 @@ const TodosContainer = styled.div`
 
 const Todos = () => {   
 
-    const todoId = 'Qkw18cnqIKPnugsRwdcYqfogiAp1';
+    // const todoId = 'Qkw18cnqIKPnugsRwdcYqfogiAp1';
+    const todoId = useSelector(state => state.firebase.auth.uid);
 
     useFirestoreConnect(() => [
         { collection: 'todos', doc: todoId } // or `todos/${props.todoId}`
@@ -46,7 +47,7 @@ const Todos = () => {
     }else if(!myTodos && requested || myTodos.length === 0){
         content = <p>You have no todos!</p>
     }else{
-        content = myTodos.map( todo => <Todo key={todo.id} todo={todo}/>)
+        content = myTodos.slice().reverse().map( todo => <Todo key={todo.id} todo={todo}/>)
     }
 /*
     if(!todos){

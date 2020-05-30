@@ -73,7 +73,7 @@ export const editTodo = (id, text) => {
             
             })
             dispatch({ type: actions.EDIT_TODO_SUCCESS})
-
+            return true;
         }catch(err){
             dispatch({ type: actions.ADD_TODO_FAIL, payload: err.message})
         }
