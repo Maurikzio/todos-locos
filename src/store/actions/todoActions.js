@@ -21,8 +21,8 @@ export const addTodo = data => {
                 todo: data.todo
             };
             
-            await firestore.collection('todos').doc(userId).set(
-                { todos: firestore.FieldValue.arrayUnion(newTodo)},
+            await firestore.collection('todos').doc(userId).set({ 
+                todos: firestore.FieldValue.arrayUnion(newTodo)},
                 { merge: true })
             
             dispatch({ type: actions.ADD_TODO_SUCCESS})
@@ -73,7 +73,7 @@ export const editTodo = (id, text) => {
             
             })
             dispatch({ type: actions.EDIT_TODO_SUCCESS})
-            return true;
+            return true
         }catch(err){
             dispatch({ type: actions.ADD_TODO_FAIL, payload: err.message})
         }

@@ -24,7 +24,8 @@ const WrapperModal = styled.div`
     background-color: orange;
 `
 
-const Modal = ({opened, close, children}) => {
+// const Modal = ({opened, close, children}) => {
+const Modal = React.memo(({opened, close, children}) => {
     return ReactDOM.createPortal(
         <>
         <Backdrop close={close} opened={opened}></Backdrop>
@@ -32,6 +33,9 @@ const Modal = ({opened, close, children}) => {
         </>,
         document.getElementById('root-modal')
     );
-}
+}, (prevProps, nextProps) => {
+    //if it returns false will update the component
+    return prevProps.opened === nextProps.opened;
+})
 
 export default Modal;
